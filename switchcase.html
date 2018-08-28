@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+    #container {
+        width: 400px;
+        height: 300px;
+        margin: 0 auto;
+    }
+    </style>
+    <title>Bài tập switch case</title>
+</head>
+
+<body>
+    <div id="container">
+        <form action="#">
+            <input type="text" id="input" placeholder="Nhập vào tháng" />
+            <button id="btn">Tính số ngày</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script type="text/javascript">
+    let btn = document.getElementById("btn");
+    function isNamNhuan(nam){
+    	let dk1 = nam%4==0&&nam%100!=0;
+    	let dk2 = nam%100==0&&nam%400==0;
+    	if(dk1||dk2){
+    		return true;
+    	}else{
+    		return false;
+    	}
+    }
+
+    btn.addEventListener('click', function() {
+    	//Phải để các biến bên trong sự kiện thì mới nhận 
+    	let ip = parseInt(document.getElementById("input").value);
+    	let result = document.getElementById("result");
+        switch (ip) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                result.innerHTML = "Tháng " + ip + " có 31 ngày!!";
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                result.innerHTML = "Tháng " + ip + " có 30 ngày!!";
+                break;
+            case 2:
+            	let nam = prompt("Nhap nam");
+            	if(isNamNhuan(nam))
+                	result.innerHTML = "Tháng " + ip + " có 29 ngày!!";
+                else
+                	result.innerHTML = "Tháng " + ip + " có 28 ngày!!";     
+                break;
+            default:
+                result.innerHTML = "Giá trị nhập vào không hợp lệ!!";
+                break;
+        };
+    });
+    </script>
+</body>
+
+</html>
